@@ -1,4 +1,4 @@
-const DEPLOY_URL = "https://fullstack-qpsz.onrender.com"
+const DEPLOY_URL = "https://health-nutrition-of-a-dish-depending-on.onrender.com"
 
 const user_api = `${DEPLOY_URL}/api/users`;
 
