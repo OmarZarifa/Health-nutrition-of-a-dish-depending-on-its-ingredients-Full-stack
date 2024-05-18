@@ -1,4 +1,4 @@
-const DEPLOY_URL = "http://localhost:5000"
+const DEPLOY_URL = "https://fullstack-qpsz.onrender.com"
 
 const user_api = `${DEPLOY_URL}/api/users`;
 
