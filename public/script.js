@@ -7,9 +7,12 @@ let UserId;
 let userName1;
 
 document.addEventListener("DOMContentLoaded", function () {
+ 
+
   const path = window.location.pathname;
   UserId = sessionStorage.getItem('UserId');
   token = sessionStorage.getItem('token');
+  admin = sessionStorage.getItem('admin');
   if (!UserId && !path.includes('login')) {
     window.location.href = 'login.html';
   } else {
@@ -151,9 +154,15 @@ function loginFormSubmitHandler(event) {
 
           UserId = data.user.id;
           sessionStorage.setItem('UserId', UserId);
+          
           token = data.token.Token
           sessionStorage.setItem('token', token);
+
+          admin = data.user.admin;
+          sessionStorage.setItem('admin', admin);
+
           window.location.href = 'home.html';
+
         })
         .catch((error) => {
           alert(error.message)
@@ -690,7 +699,6 @@ function logout() {
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data.message);
       sessionStorage.removeItem('token');
       sessionStorage.removeItem('UserId');
       window.location.href = 'login.html';
@@ -895,7 +903,8 @@ function appendArticle(article) {
 
 /////////// ADMIN \\\\\\\\\\\
 function deleteAcount(userid){
-  
+  deleteEntry(userid),
+  deleteAllFavouriteRecipes(userid)
   fetch(`${DEPLOY_URL}/api/users/deleteUser/${userid}`, {
     method: 'DELETE',
     headers: {
